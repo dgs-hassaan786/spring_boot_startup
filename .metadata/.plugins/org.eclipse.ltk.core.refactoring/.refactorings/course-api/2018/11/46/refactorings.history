@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;statusCode&apos; in &apos;hassaan.khan.quickstart.vm.RestMessage&apos; to &apos;httpStatus&apos;&#x0D;&#x0A;- Original project: &apos;course-api&apos;&#x0D;&#x0A;- Original element: &apos;hassaan.khan.quickstart.vm.RestMessage.statusCode&apos;&#x0D;&#x0A;- Renamed element: &apos;hassaan.khan.quickstart.vm.RestMessage.httpStatus&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;statusCode&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src\/main\/java&lt;hassaan.khan.quickstart.vm{RestMessage.java[RestMessage^statusCode" name="httpStatus" references="true" setter="false" stamp="1542045122132" textual="false" version="1.0"/>
+</session>

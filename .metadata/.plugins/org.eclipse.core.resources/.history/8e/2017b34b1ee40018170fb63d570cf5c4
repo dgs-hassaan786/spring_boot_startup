@@ -1,0 +1,10 @@
+package hassaan.khan.quickstart;
+
+public class CourseApiApp {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

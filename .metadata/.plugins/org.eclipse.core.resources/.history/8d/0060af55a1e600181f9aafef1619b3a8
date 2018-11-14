@@ -1,0 +1,5 @@
+package hassaan.khan.quickstart.vm;
+
+public class RestMessage {
+
+}

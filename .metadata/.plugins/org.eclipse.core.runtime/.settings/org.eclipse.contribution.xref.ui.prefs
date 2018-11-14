@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+org.eclipse.contribution.xref.ui.views.XReferenceView.link=false
+org.eclipse.contribution.xref.ui.views.XReferenceView.xrefsForFile=true

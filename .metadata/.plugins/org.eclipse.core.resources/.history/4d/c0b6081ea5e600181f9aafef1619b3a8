@@ -1,0 +1,44 @@
+package hassaan.khan.quickstart.vm;
+
+public class RestMessage {
+
+	private Object data;
+	private StatusCodeEnum httpStatus;
+	private int statusCode;
+	private Exception ex;
+	
+	public RestMessage() {
+		
+	}
+	
+	public RestMessage(Object d, StatusCodeEnum c) {
+		data = d;
+		httpStatus = c;
+		statusCode = c.val();
+	}
+	
+	public void setData(Object d) {
+		data =d;
+	}
+	
+	public void setStatusCodeEnum(StatusCodeEnum c) {
+		httpStatus = c;
+	}
+	
+	public void setException(Exception e) {
+		ex = e;
+	}
+	
+	public Object getData() {
+		return data;
+	}
+	
+	public StatusCodeEnum getStatusCode() {
+		return httpStatus;
+	}
+	
+	public Exception getException() {
+		return ex;
+	}
+	
+}

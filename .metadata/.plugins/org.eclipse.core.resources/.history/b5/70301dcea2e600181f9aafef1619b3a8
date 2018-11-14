@@ -1,0 +1,74 @@
+package hassaan.khan.quickstart.topic;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import hassaan.khan.quickstart.vm.RestMessage;
+import hassaan.khan.quickstart.vm.StatusCodeEnum;
+
+@RestController
+public class TopicController {
+
+	private RestMessage message;
+	
+	@Autowired
+	private TopicService topicService;
+	
+	@RequestMapping(method=RequestMethod.GET, value="/topics")
+	public RestMessage getAllTopics() {				
+		try {
+		
+			List<Topic> topic = topicService.getAllTopics();		
+			message = new RestMessage(topic,StatusCodeEnum.OK);		
+			return message;
+			
+		} catch (Exception e) {
+		
+			message = new RestMessage(e.getMessage(),StatusCodeEnum.INTERNAL_SERVER_ERROR);
+			message.setException(e);
+			
+			return message;		 	
+		}		
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value = "/topics/{id}")
+	public RestMessage getAllTopics(String id) {					
+		try {
+			
+			Topic topic = topicService.getTopic(id);
+			if(topic == null) {
+				message = new RestMessage(id,StatusCodeEnum.NOT_FOUND);
+			}else {
+				message = new RestMessage(topic,StatusCodeEnum.OK);		
+			}
+			return message;
+			
+		} catch (Exception e) {
+		
+			message = new RestMessage(e.getMessage(),StatusCodeEnum.INTERNAL_SERVER_ERROR);
+			message.setException(e);
+			
+			return message;		 	
+		}		
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/topics")
+	public void addTopic(@RequestBody Topic topic) {		
+		topicService.addTopic(topic);
+	}
+	
+	@RequestMapping(method=RequestMethod.PUT, value="/topics/{id}")
+	public void updateTopic(@RequestBody Topic topic, @PathVariable String id) {		
+		topicService.updateTopic(id, topic);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value="/topics/{id}")
+	public void deleteTopic(@PathVariable String id) {		
+		topicService.removeTopic(id);
+	}
+}
