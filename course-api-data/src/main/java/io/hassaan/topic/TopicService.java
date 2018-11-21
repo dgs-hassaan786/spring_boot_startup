@@ -60,14 +60,16 @@ public class TopicService {
 	public void updateTopic(String id, Topic topic) {
 				
 		
-		int i = 0;
+		topicRepository.save(topic);
+		
+		/*int i = 0;
 		for (Topic t : topics) {
 			if(t.getId().equals(id)) {
 				topics.set(i,topic);				
 				break;
 			}
 			i++;
-		}		
+		}	*/	
 	}
 
 	public boolean removeTopic(String id) {		
