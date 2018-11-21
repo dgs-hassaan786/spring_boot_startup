@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: Spring Boot Course API
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Hassan.Khan
+Built-By: home
 Implementation-Vendor-Id: hassaan.khan.quickstart
 Build-Jdk: 1.8.0_191
 Implementation-URL: http://projects.spring.io/spring-boot/course-api/
