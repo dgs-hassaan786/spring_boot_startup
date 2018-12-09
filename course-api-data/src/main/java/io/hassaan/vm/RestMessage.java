@@ -1,10 +1,16 @@
 package io.hassaan.vm;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class RestMessage {
 
+	@JsonProperty("Data")
 	private Object data;
+	@JsonProperty("HttpStatus")
 	private StatusCodeEnum httpStatus;
+	@JsonProperty("StatusCode")
 	private int statusCode;
+	@JsonProperty("Error")
 	private Exception ex;
 	
 	public RestMessage() {
