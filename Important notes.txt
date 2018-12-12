@@ -1,0 +1,11 @@
+For building a mvn project
+-> mvn clean install
+
+for running the application
+-> java -jar [Path of the jar file]
+
+for making a war
+1. open pom.xml
+2. change the build type from jar to war
+3. run the command [mvn clean install] command
+
