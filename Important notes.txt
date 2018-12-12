@@ -8,4 +8,5 @@ for making a war
 1. open pom.xml
 2. change the build type from jar to war
 3. run the command [mvn clean install] command
+4. war is also run using the same command java -jar [path of the war file]
 
