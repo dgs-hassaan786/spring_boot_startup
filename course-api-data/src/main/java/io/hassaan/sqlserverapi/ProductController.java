@@ -1,6 +1,7 @@
 package io.hassaan.sqlserverapi;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,7 @@ public class ProductController {
 			message = new RestMessage(products, StatusCodeEnum.OK);
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			message = new RestMessage(e.getMessage(), StatusCodeEnum.INTERNAL_SERVER_ERROR);
 			message.setException(e);
 		}
@@ -41,7 +42,7 @@ public class ProductController {
 			message = new RestMessage(product, StatusCodeEnum.OK);
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			message = new RestMessage(e.getMessage(), StatusCodeEnum.INTERNAL_SERVER_ERROR);
 			message.setException(e);
 		}
@@ -57,7 +58,7 @@ public class ProductController {
 			message = new RestMessage(products, StatusCodeEnum.OK);
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			message = new RestMessage(e.getMessage(), StatusCodeEnum.INTERNAL_SERVER_ERROR);
 			message.setException(e);
 		}
@@ -73,7 +74,43 @@ public class ProductController {
 			message = new RestMessage(products, StatusCodeEnum.OK);
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			
+			message = new RestMessage(e.getMessage(), StatusCodeEnum.INTERNAL_SERVER_ERROR);
+			message.setException(e);
+		}
+
+		return message;
+	}
+	
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/products/add")
+	public RestMessage addProduct(@RequestBody String name) {
+		try {
+			repo = new ProductRepository(connStr, username, password);
+			Product products = repo.addProduct(name);
+			message = new RestMessage(products, StatusCodeEnum.OK);
+
+		} catch (Exception e) {
+			
+			message = new RestMessage(e.getMessage(), StatusCodeEnum.INTERNAL_SERVER_ERROR);
+			message.setException(e);
+		}
+
+		return message;
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/products/{id}/upsert")
+	public RestMessage addProduct(@RequestBody Product p, @PathVariable long id) {
+		try {
+			repo = new ProductRepository(connStr, username, password);
+			int rs = repo.updateProduct(id,p.getName());
+			
+			String result = Integer.toString(rs) + " record(s) updated";
+			
+			message = new RestMessage(result, StatusCodeEnum.OK);
+
+		} catch (Exception e) {
+			
 			message = new RestMessage(e.getMessage(), StatusCodeEnum.INTERNAL_SERVER_ERROR);
 			message.setException(e);
 		}

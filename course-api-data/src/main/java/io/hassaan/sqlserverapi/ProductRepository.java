@@ -92,4 +92,44 @@ public class ProductRepository {
 		}
 	}
 
+	public Product addProduct(String name) throws Exception {
+
+		try {
+			sdbc.createConnection();
+			String command = "insert into Products values (?)";
+			List<Object> params = new ArrayList<Object>();
+			params.add(name);
+			ResultSet rs = sdbc.executeInsert(command, params);
+
+			if (rs.next()) {
+				return new Product(rs.getLong(1), name);
+			}
+
+			throw new Exception("Failed to insert the record");
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			sdbc.closeConnection();
+		}
+	}
+	
+	public int updateProduct(long id, String name) throws Exception {
+		try {
+			sdbc.createConnection();
+			String command = "update Products set name = ? where id = ? ";
+			List<Object> params = new ArrayList<Object>();
+			params.add(name);
+			params.add(id);
+			return sdbc.executeUpdate(command, params);					
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			sdbc.closeConnection();
+		}
+	}
+	
+
+	
+	
+
 }

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 public class SqlDbHelper {
@@ -28,13 +29,40 @@ public class SqlDbHelper {
 		return stmt.executeQuery();
 	}
 
-	public ResultSet executeQuery(String command,List<Object> params) throws SQLException {
-		PreparedStatement  stmt = connection.prepareStatement(command);
+	public ResultSet executeQuery(String command, List<Object> params) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(command);
 		int index = 1;
-		for (Object obj : params) {			
+		for (Object obj : params) {
 			stmt.setObject(index++, obj);
 		}
 		return stmt.executeQuery();
+	}
+
+	public ResultSet executeInsert(String command, List<Object> params) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(command, Statement.RETURN_GENERATED_KEYS);
+		int index = 1;
+		
+		for (Object obj : params) {
+			stmt.setObject(index++, obj);
+		}
+		
+		int affectedRows = stmt.executeUpdate();
+		if (affectedRows == 0) {
+			throw new SQLException("Insertion failed");
+		}
+
+		return stmt.getGeneratedKeys();
+	}
+	
+	public int executeUpdate(String command, List<Object> params) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(command);
+		int index = 1;
+		
+		for (Object obj : params) {
+			stmt.setObject(index++, obj);
+		}
+		
+		return stmt.executeUpdate();				
 	}
 
 	public void closeConnection() throws SQLException {
