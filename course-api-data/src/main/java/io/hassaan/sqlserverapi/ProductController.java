@@ -1,6 +1,8 @@
 package io.hassaan.sqlserverapi;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +13,7 @@ import io.hassaan.configs.ConfigurationManager;
 import io.hassaan.vm.RestMessage;
 import io.hassaan.vm.StatusCodeEnum;
 
+//@CrossOrigin(origins = "http://localhost:9000")
 @RestController
 public class ProductController {
 
@@ -22,7 +25,9 @@ public class ProductController {
 	private ProductRepository repo = null;
 	private RestMessage message;
 
-	@RequestMapping(method = RequestMethod.GET, value = "/products")
+	//Get Mapping is a shortcut to represent the @RequestMapping(method = RequestMethod.GET)
+	@GetMapping("/products")
+	//@RequestMapping(method = RequestMethod.GET, value = "/products")
 	public RestMessage getProducts() {
 		try {
 			repo = new ProductRepository(config.MSSQLConnectionString, config.MSSQLUsername, config.MSSQLPassword);
@@ -86,8 +91,9 @@ public class ProductController {
 		return message;
 	}
 	
-	
-	@RequestMapping(method = RequestMethod.POST, value = "/products/add")
+	//Short form for @RequestMapping(method=RequestMethod.POST)
+	@PostMapping("/products/add")
+	//@RequestMapping(method = RequestMethod.POST, value = "/products/add")
 	public RestMessage addProduct(@RequestBody String name) {
 		try {
 			repo = new ProductRepository(config.MSSQLConnectionString, config.MSSQLUsername, config.MSSQLPassword);
