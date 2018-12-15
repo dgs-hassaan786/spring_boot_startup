@@ -10,3 +10,5 @@ for making a war
 3. run the command [mvn clean install] command
 4. war is also run using the same command java -jar [path of the war file]
 
+java -jar target/course-api-data-0.0.1-SNAPSHOT.war
+java -jar target/course-api-data-0.0.1-SNAPSHOT.jar
